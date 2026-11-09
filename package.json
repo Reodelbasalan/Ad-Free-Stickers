@@ -1,0 +1,8 @@
+{
+  "name": "free-stickers",
+  "version": "1.0.0",
+  "description": "Free original stickers (SVG + PNG) with a web editor and a video sticker script",
+  "license": "MIT",
+  "scripts": { "build": "node build/build.js" },
+  "devDependencies": { "playwright": "^1.47.0" }
+}
