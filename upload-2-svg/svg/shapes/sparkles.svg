@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -24 560 560" width="560" height="560"><defs><filter id="stk" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+<feMorphology in="SourceAlpha" operator="dilate" radius="14" result="d"/>
+<feFlood flood-color="#ffffff"/><feComposite in2="d" operator="in" result="bd"/>
+<feGaussianBlur in="d" stdDeviation="7"/><feOffset dy="7" result="sb"/><feFlood flood-color="#000" flood-opacity="0.32"/><feComposite in2="sb" operator="in" result="sh"/>
+<feMerge><feMergeNode in="sh"/><feMergeNode in="bd"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#stk)"><g><path d="M180 150Q180 300 330 300Q180 300 180 450Q180 300 30 300Q180 300 180 150Z" fill="#b388ff" /><path d="M370 50Q370 150 470 150Q370 150 370 250Q370 150 270 150Q370 150 370 50Z" fill="#caacff" /><path d="M390 320Q390 380 450 380Q390 380 390 440Q390 380 330 380Q390 380 390 320Z" fill="#b388ff" /><circle cx="120" cy="110" r="22" fill="#ffffff" /></g></g></svg>
