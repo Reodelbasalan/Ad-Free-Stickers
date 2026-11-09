@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Stickers</title>
+<meta name="description" content="Libreng stickers para sa videos at posts: i-edit ang text at kulay, i-download as PNG o SVG.">
+<style>
+:root{--bg:#0f1115;--panel:#181b22;--panel2:#20242d;--line:#2c313c;--text:#eef1f6;--muted:#9aa3b2;--accent:#ff3d71;--accent2:#ffb03d;--r:14px}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{padding:28px 16px 10px;text-align:center}
+header h1{margin:0;font-size:clamp(26px,5vw,40px);letter-spacing:-.5px}
+header h1 span{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+header p{margin:6px 0 0;color:var(--muted)}
+.bar{max-width:1200px;margin:10px auto 0;padding:0 16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+#q{flex:1 1 220px;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:10px 16px;color:var(--text);font:inherit}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;color:var(--text);cursor:pointer}
+.chip:hover{border-color:var(--muted)}
+.chip.on{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#111;border-color:transparent;font-weight:700}
+#count{color:var(--muted);font-size:13px;max-width:1200px;margin:10px auto 0;padding:0 16px}
+#grid{max-width:1200px;margin:12px auto 40px;padding:0 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:10px;cursor:pointer;text-align:center;transition:.15s;color:var(--text);font:inherit}
+.card:hover{transform:translateY(-3px);border-color:var(--accent)}
+.card img{width:100%;aspect-ratio:1;display:block}
+.card span{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:4px}
+.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px}
+/* editor */
+dialog{border:1px solid var(--line);border-radius:18px;background:var(--panel);color:var(--text);padding:0;width:min(940px,calc(100vw - 32px));max-height:calc(100vh - 32px)}
+dialog::backdrop{background:#000a}
+.ed{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px)}
+@media (max-width:760px){.ed{grid-template-columns:minmax(0,1fr)}}
+.stage{display:flex;align-items:center;justify-content:center;padding:24px;min-height:300px;border-radius:18px 0 0 18px;
+  background-color:#e9ecf1;background-image:linear-gradient(45deg,#d3d8e0 25%,transparent 25%),linear-gradient(-45deg,#d3d8e0 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#d3d8e0 75%),linear-gradient(-45deg,transparent 75%,#d3d8e0 75%);
+  background-size:24px 24px;background-position:0 0,0 12px,12px -12px,-12px 0}
+.stage.dark{background-color:#22252c;background-image:linear-gradient(45deg,#2c3039 25%,transparent 25%),linear-gradient(-45deg,#2c3039 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#2c3039 75%),linear-gradient(-45deg,transparent 75%,#2c3039 75%)}
+.stage img{width:min(100%,380px);aspect-ratio:1}
+.side{padding:18px;overflow:auto;max-height:calc(100vh - 32px)}
+.side h2{margin:0 0 2px;font-size:20px}
+.side .tags{color:var(--muted);font-size:12px;margin-bottom:12px}
+.f{display:grid;grid-template-columns:110px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px}
+.f label{color:var(--muted);font-size:13px}
+.f input[type=text],.f select{width:100%;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px;color:var(--text);font:inherit}
+.f input[type=color]{width:52px;height:34px;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:2px;cursor:pointer}
+.f input[type=range]{width:100%;accent-color:var(--accent)}
+.checks{display:flex;flex-wrap:wrap;gap:12px;margin:4px 0 12px;font-size:14px}
+.checks label{display:flex;align-items:center;gap:6px;cursor:pointer}
+.checks input{accent-color:var(--accent);width:16px;height:16px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.btn{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:linear-gradient(90deg,var(--accent),var(--accent2));color:#111;border:0}
+.x{position:absolute;top:10px;right:12px;background:#0008;color:#fff;border:0;border-radius:50%;width:34px;height:34px;font-size:18px;cursor:pointer}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(80px);background:#111;color:#fff;padding:10px 18px;border-radius:999px;transition:.25s;z-index:9;opacity:0}
+#toast.show{transform:translateX(-50%);opacity:1}
+/* animation previews */
+@keyframes pop{0%{transform:scale(0)}60%{transform:scale(1.15)}80%{transform:scale(.95)}100%{transform:scale(1)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-12%)}}
+@keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-6%) rotate(2deg)}}
+@keyframes shake{0%,100%{transform:translate(0)}20%{transform:translate(-4%,2%)}40%{transform:translate(4%,-2%)}60%{transform:translate(-3%,-2%)}80%{transform:translate(3%,2%)}}
+.a-pop{animation:pop .6s cubic-bezier(.3,1.4,.6,1) infinite alternate}.a-bounce{animation:bounce .7s ease-in-out infinite}
+.a-wiggle{animation:wiggle .5s ease-in-out infinite}.a-spin{animation:spin 2s linear infinite}.a-pulse{animation:pulse .9s ease-in-out infinite}
+.a-float{animation:float 2.4s ease-in-out infinite}.a-shake{animation:shake .35s linear infinite}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:0 16px 30px}
+</style>
+</head>
+<body>
+<header>
+  <h1>✨ <span>Free Stickers</span></h1>
+  <p>Libreng stickers para sa videos, thumbnails at posts. I-click para i-edit, tapos i-download.</p>
+</header>
+<div class="bar">
+  <input id="q" type="search" placeholder="🔍 Hanapin… (hal. like, wow, arrow, sale)">
+  <div class="chips" id="cats"></div>
+</div>
+<div id="count"></div>
+<div id="grid"></div>
+<footer>Open source · MIT License · Original designs, free kahit sa commercial use.</footer>
+
+<dialog id="dlg">
+  <button class="x" id="close" aria-label="Close">✕</button>
+  <div class="ed">
+    <div class="stage" id="stage"><img id="big" alt=""></div>
+    <div class="side">
+      <h2 id="title"></h2>
+      <div class="tags" id="tags"></div>
+      <div class="f" id="fText"><label for="text">Text</label><input type="text" id="text" maxlength="40"></div>
+      <div class="f" id="fText2"><label for="text2">Text 2</label><input type="text" id="text2" maxlength="40"></div>
+      <div class="f"><label>Kulay</label><div style="display:flex;gap:8px"><input type="color" id="c1" title="Main color"><input type="color" id="c2" title="Second color"></div></div>
+      <div class="checks">
+        <label><input type="checkbox" id="border"> White border</label>
+        <label><input type="checkbox" id="shadow"> Shadow</label>
+        <label><input type="checkbox" id="flip"> Flip</label>
+      </div>
+      <div class="f"><label for="bw">Border size</label><input type="range" id="bw" min="4" max="26" value="14"></div>
+      <div class="f"><label for="bcol">Border color</label><input type="color" id="bcol" value="#ffffff"></div>
+      <div class="f"><label for="size">PNG size</label>
+        <select id="size"><option value="256">256 px</option><option value="512">512 px</option><option value="1024" selected>1024 px</option><option value="2048">2048 px (HD)</option></select></div>
+      <div class="f"><label for="anim">Animation preview</label>
+        <select id="anim"><option value="">Wala</option><option>pop</option><option>bounce</option><option>wiggle</option><option>spin</option><option>pulse</option><option>float</option><option>shake</option></select></div>
+      <div class="checks"><label><input type="checkbox" id="darkbg"> Dark background preview</label></div>
+      <div class="btns">
+        <button class="btn primary" id="dlPng">⬇ PNG</button>
+        <button class="btn" id="dlSvg">⬇ SVG</button>
+        <button class="btn" id="copy">📋 Copy</button>
+        <button class="btn" id="reset">↺ Reset</button>
+      </div>
+      <p class="tags" style="margin-top:12px">Para i-animate sa video: <code>scripts/add-sticker.sh</code> (tingnan ang README).</p>
+    </div>
+  </div>
+</dialog>
+<div id="toast"></div>
+
+<script src="stickers.js"></script>
+<script>
+"use strict";
+const { STICKERS, CATEGORIES, render } = window.FreeStickers;
+const $ = s => document.querySelector(s);
+const svgUrl = svg => "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+let cat = "all", cur = null, opts = {};
+
+/* ---- gallery ---- */
+const cats = $("#cats");
+[["all", "🌈 Lahat"], ...CATEGORIES].forEach(([id, label]) => {
+  const b = document.createElement("button"); b.className = "chip" + (id === "all" ? " on" : ""); b.textContent = label; b.dataset.cat = id;
+  b.onclick = () => { cat = id; cats.querySelectorAll(".chip").forEach(c => c.classList.toggle("on", c === b)); draw(); };
+  cats.append(b);
+});
+$("#q").addEventListener("input", draw);
+const thumbs = new Map(STICKERS.map(s => [s.id, svgUrl(render(s))]));
+function draw(){
+  const q = $("#q").value.trim().toLowerCase();
+  const list = STICKERS.filter(s => (cat === "all" || s.cat === cat) &&
+    (!q || (s.name + " " + s.tags + " " + s.id + " " + (s.text || "") + " " + s.cat).toLowerCase().includes(q)));
+  const g = $("#grid"); g.innerHTML = "";
+  list.forEach(s => {
+    const b = document.createElement("button"); b.className = "card"; b.title = s.name;
+    b.innerHTML = `<img loading="lazy" alt=""><span></span>`;
+    b.querySelector("img").src = thumbs.get(s.id); b.querySelector("img").alt = s.name; b.querySelector("span").textContent = s.name;
+    b.onclick = () => openEditor(s);
+    g.append(b);
+  });
+  if (!list.length) g.innerHTML = `<div class="empty">Walang nahanap 😅 Subukan ang ibang salita.</div>`;
+  $("#count").textContent = `${list.length} stickers`;
+}
+
+/* ---- editor ---- */
+function defaults(s){ return { c1: s.c1, c2: s.c2, text: s.text, text2: s.text2, border: s.border !== false, shadow: s.border !== false, flip: false, borderWidth: 14, borderColor: "#ffffff" }; }
+function openEditor(s){
+  cur = s; opts = defaults(s);
+  $("#title").textContent = s.name; $("#tags").textContent = "#" + s.tags.split(" ").filter(Boolean).join(" #");
+  $("#fText").style.display = s.text !== undefined ? "" : "none";
+  $("#fText2").style.display = s.text2 !== undefined ? "" : "none";
+  syncInputs(); update();
+  $("#dlg").showModal();
+}
+function syncInputs(){
+  $("#text").value = opts.text ?? ""; $("#text2").value = opts.text2 ?? "";
+  $("#c1").value = toHex(opts.c1); $("#c2").value = toHex(opts.c2);
+  $("#border").checked = opts.border; $("#shadow").checked = opts.shadow; $("#flip").checked = opts.flip;
+  $("#bw").value = opts.borderWidth; $("#bcol").value = opts.borderColor;
+}
+function toHex(c){ return /^#[0-9a-f]{6}$/i.test(c) ? c : "#000000"; }
+function currentSvg(){ return render(cur, opts); }
+function update(){
+  $("#big").src = svgUrl(currentSvg());
+  $("#big").className = $("#anim").value ? "a-" + $("#anim").value : "";
+}
+[["#text", "text"], ["#text2", "text2"], ["#c1", "c1"], ["#c2", "c2"], ["#bcol", "borderColor"]].forEach(([sel, k]) =>
+  $(sel).addEventListener("input", e => { opts[k] = e.target.value; update(); }));
+$("#bw").addEventListener("input", e => { opts.borderWidth = +e.target.value; update(); });
+["border", "shadow", "flip"].forEach(k => $("#" + k).addEventListener("change", e => { opts[k] = e.target.checked; update(); }));
+$("#anim").addEventListener("change", update);
+$("#darkbg").addEventListener("change", e => $("#stage").classList.toggle("dark", e.target.checked));
+$("#reset").onclick = () => { opts = defaults(cur); syncInputs(); update(); };
+$("#close").onclick = () => $("#dlg").close();
+$("#dlg").addEventListener("click", e => { if (e.target === $("#dlg")) $("#dlg").close(); });
+
+function fileName(ext){
+  const t = (opts.text || cur.id).toString().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || cur.id;
+  return `sticker-${cur.id}${t !== cur.id ? "-" + t : ""}.${ext}`;
+}
+async function toPngBlob(){
+  const size = +$("#size").value, img = new Image();
+  img.src = svgUrl(currentSvg()); await img.decode();
+  const c = document.createElement("canvas"); c.width = c.height = size;
+  c.getContext("2d").drawImage(img, 0, 0, size, size);
+  return new Promise(r => c.toBlob(r, "image/png"));
+}
+function save(blob, name){
+  const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
+  document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+$("#dlPng").onclick = async () => { save(await toPngBlob(), fileName("png")); toast("✅ Na-download ang PNG"); };
+$("#dlSvg").onclick = () => { save(new Blob([currentSvg()], { type: "image/svg+xml" }), fileName("svg")); toast("✅ Na-download ang SVG"); };
+$("#copy").onclick = async () => {
+  try { await navigator.clipboard.write([new ClipboardItem({ "image/png": toPngBlob() })]); toast("📋 Copied! I-paste na sa editor mo"); }
+  catch { toast("❌ Hindi supported ang copy dito — gamitin ang ⬇ PNG"); }
+};
+let tt; function toast(m){ const t = $("#toast"); t.textContent = m; t.classList.add("show"); clearTimeout(tt); tt = setTimeout(() => t.classList.remove("show"), 2200); }
+
+draw();
+</script>
+</body>
+</html>
