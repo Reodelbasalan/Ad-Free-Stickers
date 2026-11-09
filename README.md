@@ -2,7 +2,7 @@
 
 **98 libreng stickers** para sa videos, thumbnails, reels at posts. Original designs, walang watermark, at puwede kahit sa **commercial** use (MIT License).
 
-🌐 **Try it online:** https://reodelbasalan.github.io/Free-Stickers/
+🌐 **Try it online:** https://reodelbasalan.github.io/Ad-Free-Stickers/
 
 - 🖼 Ready na **PNG** (transparent, 512px) at **SVG** (puwedeng i-resize nang hindi lumalabo)
 - ✏️ **Web editor**: palitan ang text at kulay, i-flip, white border, shadow, at i-download hanggang 2048px
@@ -32,7 +32,7 @@ I-double-click ang **`index.html`** (pinakamaganda sa Chrome o Edge).
 2. Palitan ang **text** at **kulay**. May **Flip**, **White border**, **Shadow**, at **Border size/color**.
 3. **⬇ PNG** (256–2048px), **⬇ SVG**, o **📋 Copy** para i-paste diretso sa editor mo.
 
-> O buksan lang online, gumagana pati sa phone: https://reodelbasalan.github.io/Free-Stickers/
+> O buksan lang online, gumagana pati sa phone: https://reodelbasalan.github.io/Ad-Free-Stickers/
 
 ### 3. Ilagay sa video na may animation (FFmpeg)
 Kailangan ng [FFmpeg](https://ffmpeg.org) (Windows: `winget install ffmpeg` · Mac: `brew install ffmpeg` · Linux: `sudo apt install ffmpeg`).
