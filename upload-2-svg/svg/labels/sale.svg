@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-24 -24 560 560" width="560" height="560"><defs><filter id="stk" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
-<feMorphology in="SourceAlpha" operator="dilate" radius="14" result="d"/>
-<feFlood flood-color="#ffffff"/><feComposite in2="d" operator="in" result="bd"/>
-<feGaussianBlur in="d" stdDeviation="7"/><feOffset dy="7" result="sb"/><feFlood flood-color="#000" flood-opacity="0.32"/><feComposite in2="sb" operator="in" result="sh"/>
-<feMerge><feMergeNode in="sh"/><feMergeNode in="bd"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#stk)"><g><path d="M60 150Q60 130 80 130L340 130L460 256L340 382L80 382Q60 382 60 362Z" fill="#ff3b30" stroke="#ff3b30" stroke-width="20" stroke-linejoin="round"/><circle cx="384" cy="256" r="22" fill="#ffffff" /><text x="200" y="258" font-family="&#39;Arial Black&#39;,&#39;Arial Rounded MT Bold&#39;,&#39;Segoe UI Black&#39;,&#39;Helvetica Neue&#39;,Impact,sans-serif" font-size="79.7" font-weight="900" letter-spacing="0" text-anchor="middle" dominant-baseline="central" fill="#ffffff">SALE</text></g></g></svg>
